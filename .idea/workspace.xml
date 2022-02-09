@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="b3cad4ed-a5e4-43da-b911-c5673fcd5f97" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="24poGJ1xSl0mUkyopYRoDgLQ3Rn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dmitriy\Desktop\DEAssignment\Compiler\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dmitriy\Desktop\DEAssignment\Compiler\src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Compiler" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b3cad4ed-a5e4-43da-b911-c5673fcd5f97" name="Default Changelist" comment="" />
+      <created>1644336791628</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644336791628</updated>
+      <workItem from="1644336795334" duration="1433000" />
+      <workItem from="1644407370365" duration="5040000" />
+      <workItem from="1644432989304" duration="3931000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="684" y="189" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1644433807325">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state x="513" y="139" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.672@0.0.1280.672" timestamp="1644407427098" />
+    <state x="684" y="189" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1707.912@0.0.1707.912" timestamp="1644433807325" />
+    <state x="634" y="211" key="FileChooserDialogImpl" timestamp="1644337460701">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state x="634" y="211" key="FileChooserDialogImpl/0.0.1707.912@0.0.1707.912" timestamp="1644337460701" />
+    <state width="1663" height="240" key="GridCell.Tab.0.bottom" timestamp="1644337122050">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state width="1663" height="240" key="GridCell.Tab.0.bottom/0.0.1707.912@0.0.1707.912" timestamp="1644337122050" />
+    <state width="1663" height="240" key="GridCell.Tab.0.center" timestamp="1644337122050">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state width="1663" height="240" key="GridCell.Tab.0.center/0.0.1707.912@0.0.1707.912" timestamp="1644337122050" />
+    <state width="1663" height="240" key="GridCell.Tab.0.left" timestamp="1644337122050">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state width="1663" height="240" key="GridCell.Tab.0.left/0.0.1707.912@0.0.1707.912" timestamp="1644337122050" />
+    <state width="1663" height="240" key="GridCell.Tab.0.right" timestamp="1644337122050">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state width="1663" height="240" key="GridCell.Tab.0.right/0.0.1707.912@0.0.1707.912" timestamp="1644337122050" />
+    <state x="334" y="31" key="SettingsEditor" timestamp="1644337473117">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state x="334" y="31" key="SettingsEditor/0.0.1707.912@0.0.1707.912" timestamp="1644337473117" />
+    <state x="550" y="281" key="com.intellij.ide.util.TipDialog" timestamp="1644433656707">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state x="412" y="207" key="com.intellij.ide.util.TipDialog/0.0.1280.672@0.0.1280.672" timestamp="1644407395257" />
+    <state x="550" y="281" key="com.intellij.ide.util.TipDialog/0.0.1707.912@0.0.1707.912" timestamp="1644433656707" />
+    <state x="968" y="108" width="739" height="804" key="find.popup" timestamp="1644434543019">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state x="968" y="108" width="739" height="804" key="find.popup/0.0.1707.912@0.0.1707.912" timestamp="1644434543019" />
+    <state x="495" y="183" width="700" height="530" key="recent.locations.popup" timestamp="1644434493043">
+      <screen x="0" y="0" width="1707" height="912" />
+    </state>
+    <state x="495" y="183" width="700" height="530" key="recent.locations.popup/0.0.1707.912@0.0.1707.912" timestamp="1644434493043" />
+    <state x="407" y="-1" width="672" height="678" key="search.everywhere.popup" timestamp="1644407952088">
+      <screen x="0" y="0" width="1280" height="672" />
+    </state>
+    <state x="407" y="-1" width="672" height="678" key="search.everywhere.popup/0.0.1280.672@0.0.1280.672" timestamp="1644407952088" />
+  </component>
+</project>
