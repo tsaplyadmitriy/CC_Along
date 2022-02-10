@@ -76,11 +76,11 @@ Identifier = [a-zA-Z][a-zA-Z0-9_]*
 	"."                    { return newSymbol(sym.DOT); }
 
 
-	"("                    { return newSymbol(sym.LPAREN); } // Parentheses (Oble (male) zagrade).
+	"("                    { return newSymbol(sym.LPAREN); } 
 	")"                    { return newSymbol(sym.RPAREN); }
-	"["                    { return newSymbol(sym.LBRACKET); } // (Square) Brackets (Uglaste (srednje) zagrade).
+	"["                    { return newSymbol(sym.LBRACKET); }
 	"]"                    { return newSymbol(sym.RBRACKET); }
-	"{"                    { return newSymbol(sym.LBRACE); } // (Curly) Braces (Vitičaste (velike) zagrade).
+	"{"                    { return newSymbol(sym.LBRACE); } 
 	"}"                    { return newSymbol(sym.RBRACE); }
 
 
