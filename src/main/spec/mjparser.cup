@@ -1,21 +1,3 @@
-/*
- * Copyright (C) 2018  Danijel Askov
- *
- * This file is part of MicroJava Compiler.
- *
- * MicroJava Compiler is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * MicroJava Compiler is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
 
 package askov.schoolprojects.compilerconstruction.mjcompiler;
 
@@ -105,6 +87,7 @@ nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
 nonterminal ErrorProneSuperclass;
 nonterminal FieldDeclList;
 nonterminal Methods;
+nonterminal Constructor;
 
 nonterminal Const;
 
@@ -176,10 +159,6 @@ nonterminal Relop;
 
 /* *************** TERMINAL SYMBOLS *************** */
 
-/*
- * Terminalni simboli su navedeni po redosledu pojavljivanja na desnoj strani smena.
- */
-
 terminal    PROGRAM;
 terminal    LBRACE;
 
@@ -208,8 +187,6 @@ terminal    String RPAREN; // Dummy atribut tipa String (videti objašnjenje u P
 
 terminal    VOID;
 
-terminal    INCR;
-terminal    DECR;
 terminal    IF;
 terminal    WHILE;
 terminal    String BREAK; // Dummy atribut tipa String (videti objašnjenje u PRODUCTIONS delu).
@@ -234,18 +211,14 @@ terminal    OR;
 
 terminal    AND;
 
-terminal    EQ;
-terminal    NEQ;
-terminal    GT;
-terminal    GEQ;
-terminal    LT;
-terminal    LEQ;
 
 terminal    ELSE;
 
 terminal    DO;
 
 terminal    ERROR;
+
+terminal    THIS;
 
 /* *************** PRECEDENCES *************** */
 
@@ -263,8 +236,10 @@ Program               ::= (Program) PROGRAM ProgramName DeclList LBRACE MethodDe
 
 ProgramName           ::= (ProgramName) IDENT:ident;
 
+
 DeclList              ::= (NonEmptyDeclList) DeclList Decl
                        |  (EmptyDeclList) /* epsilon */;
+
 
 Decl                  ::= (ConstDecl) CONST Type ConstList SEMI
                        |  (GlobalVarDecl) ErrorProneGlobalVarDecl 
@@ -386,8 +361,6 @@ StatementList         ::= (NonEmptyStatementList) StatementList Statement
 
 Statement             ::= (AssignmentDesignatorStatement) Designator ASSIGN ErrorProneExpr SEMI
                        |  (MethodCallDesignatorStatement) Designator ActParsStart ActPars ActParsEnd SEMI
-                       |  (IncrDesignatorStatement) Designator INCR SEMI
-                       |  (DecrDesignatorStatement) Designator DECR SEMI
                        |  (IfThenStatement) IF ConditionStart LPAREN ErrorProneCondition RPAREN ConditionEnd Statement
                        |  (IfThenElseStatement) IF ConditionStart LPAREN ErrorProneCondition RPAREN ConditionEnd Statement Else Statement
                        |  (DoWhileStatement) DoWhileStatementStart Statement WHILE ConditionStart LPAREN Condition RPAREN ConditionEnd SEMI
@@ -439,8 +412,7 @@ ExprList              ::= (MultipleExprExprList) Expr COMMA ExprList
 ActParsEnd            ::= (ActParsEnd) RPAREN:dummy;
 
 Mulop                 ::= (TimesMulop) TIMES
-                       |  (DivMulop) DIV
-                       |  (ModMulop) MOD;
+                       |  (DivMulop) DIV;
 
 Addop                 ::= (PlusAddop) PLUS
                        |  (MinusAddop) MINUS;
@@ -463,21 +435,8 @@ ErrorProneCondition   ::= (CorrectCondition) Condition
                              parser.report_error(null, null);
                           :};
 
-Condition             ::= (OrCondition) Condition OR CondTerm
-                       |  (TermCondition) CondTerm;
-
-CondTerm              ::= (AndCondTerm) CondTerm AND CondFactor
-                       |  (FactorCondTerm) CondFactor;
-
 CondFactor            ::= (ExprCondFactor) Expr
                        |  (RelOpCondFactor) Expr Relop Expr;
-
-Relop                 ::= (EqRelop) EQ
-                       |  (NeqRelop) NEQ
-                       |  (GtRelop) GT
-                       |  (GeqRelop) GEQ
-                       |  (LtRelop) LT
-                       |  (LeqRelop) LEQ;
 
 ConditionEnd          ::= (ConditionEnd) /* epsilon */;
 
@@ -486,5 +445,7 @@ Else                  ::= (Else) ELSE;
 DoWhileStatementStart ::= (DoWhileStatementStart) DO;
 
 MethodEnd             ::= (MethodEnd) RBRACE;
+
+Constructor           ::= (Constructor) THIS FormPars LBRACE StatementList RBRACE;
 
 ProgramEnd            ::= (ProgramEnd) RBRACE:dummy;

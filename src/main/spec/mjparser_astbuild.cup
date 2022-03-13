@@ -1,22 +1,3 @@
-/*
- * Copyright (C) 2018  Danijel Askov
- *
- * This file is part of MicroJava Compiler.
- *
- * MicroJava Compiler is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * MicroJava Compiler is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- */
-
 package askov.schoolprojects.compilerconstruction.mjcompiler;
 
 import java_cup.runtime.*;
@@ -105,6 +86,7 @@ nonterminal rs.etf.pp1.symboltable.concepts.Obj ClassName;
 nonterminal ErrorProneSuperclass ErrorProneSuperclass;
 nonterminal FieldDeclList FieldDeclList;
 nonterminal Methods Methods;
+nonterminal Constructor Constructor;
 
 nonterminal Const Const;
 
@@ -176,10 +158,6 @@ nonterminal Relop Relop;
 
 /* *************** TERMINAL SYMBOLS *************** */
 
-/*
- * Terminalni simboli su navedeni po redosledu pojavljivanja na desnoj strani smena.
- */
-
 terminal    PROGRAM;
 terminal    LBRACE;
 
@@ -208,8 +186,6 @@ terminal    String RPAREN; // Dummy atribut tipa String (videti objašnjenje u P
 
 terminal    VOID;
 
-terminal    INCR;
-terminal    DECR;
 terminal    IF;
 terminal    WHILE;
 terminal    String BREAK; // Dummy atribut tipa String (videti objašnjenje u PRODUCTIONS delu).
@@ -234,18 +210,14 @@ terminal    OR;
 
 terminal    AND;
 
-terminal    EQ;
-terminal    NEQ;
-terminal    GT;
-terminal    GEQ;
-terminal    LT;
-terminal    LEQ;
 
 terminal    ELSE;
 
 terminal    DO;
 
 terminal    ERROR;
+
+terminal    THIS;
 
 /* *************** PRECEDENCES *************** */
 
@@ -263,8 +235,10 @@ Program               ::= (Program) PROGRAM ProgramName:P1 DeclList:D2 LBRACE Me
 
 ProgramName           ::= (ProgramName) IDENT:ident {: RESULT=new ProgramName(ident); RESULT.setLine(identleft); :};
 
+
 DeclList              ::= (NonEmptyDeclList) DeclList:D1 Decl:D2 {: RESULT=new NonEmptyDeclList(D1, D2); RESULT.setLine(D1left); :}
                        |  (EmptyDeclList) {: RESULT=new EmptyDeclList(); :} /* epsilon */;
+
 
 Decl                  ::= (ConstDecl) CONST Type:T1 ConstList:C2 SEMI {: RESULT=new ConstDecl(T1, C2); RESULT.setLine(T1left); :}
                        |  (GlobalVarDecl) ErrorProneGlobalVarDecl:E1 {: RESULT=new GlobalVarDecl(E1); RESULT.setLine(E1left); :} 
@@ -386,8 +360,6 @@ StatementList         ::= (NonEmptyStatementList) StatementList:S1 Statement:S2 
 
 Statement             ::= (AssignmentDesignatorStatement) Designator:D1 ASSIGN ErrorProneExpr:E2 SEMI {: RESULT=new AssignmentDesignatorStatement(D1, E2); RESULT.setLine(D1left); :}
                        |  (MethodCallDesignatorStatement) Designator:D1 ActParsStart:A2 ActPars:A3 ActParsEnd:A4 SEMI {: RESULT=new MethodCallDesignatorStatement(D1, A2, A3, A4); RESULT.setLine(D1left); :}
-                       |  (IncrDesignatorStatement) Designator:D1 INCR SEMI {: RESULT=new IncrDesignatorStatement(D1); RESULT.setLine(D1left); :}
-                       |  (DecrDesignatorStatement) Designator:D1 DECR SEMI {: RESULT=new DecrDesignatorStatement(D1); RESULT.setLine(D1left); :}
                        |  (IfThenStatement) IF ConditionStart:C1 LPAREN ErrorProneCondition:E2 RPAREN:R3 ConditionEnd:C4 Statement:S5 {: RESULT=new IfThenStatement(C1, E2, R3, C4, S5); RESULT.setLine(C1left); :}
                        |  (IfThenElseStatement) IF ConditionStart:C1 LPAREN ErrorProneCondition:E2 RPAREN:R3 ConditionEnd:C4 Statement:S5 Else:E6 Statement:S7 {: RESULT=new IfThenElseStatement(C1, E2, R3, C4, S5, E6, S7); RESULT.setLine(C1left); :}
                        |  (DoWhileStatement) DoWhileStatementStart:D1 Statement:S2 WHILE ConditionStart:C3 LPAREN Condition:C4 RPAREN:R5 ConditionEnd:C6 SEMI {: RESULT=new DoWhileStatement(D1, S2, C3, C4, R5, C6); RESULT.setLine(D1left); :}
@@ -439,8 +411,7 @@ ExprList              ::= (MultipleExprExprList) Expr:E1 COMMA ExprList:E2 {: RE
 ActParsEnd            ::= (ActParsEnd) RPAREN:dummy {: RESULT=new ActParsEnd(dummy); RESULT.setLine(dummyleft); :};
 
 Mulop                 ::= (TimesMulop) TIMES {: RESULT=new TimesMulop(); :}
-                       |  (DivMulop) DIV {: RESULT=new DivMulop(); :}
-                       |  (ModMulop) MOD {: RESULT=new ModMulop(); :};
+                       |  (DivMulop) DIV {: RESULT=new DivMulop(); :};
 
 Addop                 ::= (PlusAddop) PLUS {: RESULT=new PlusAddop(); :}
                        |  (MinusAddop) MINUS {: RESULT=new MinusAddop(); :};
@@ -463,21 +434,8 @@ ErrorProneCondition   ::= (CorrectCondition) Condition:C1 {: RESULT=new CorrectC
                              parser.report_error(null, null);
                           :} {: RESULT=new ErrorCondition(); :};
 
-Condition             ::= (OrCondition) Condition:C1 OR CondTerm:C2 {: RESULT=new OrCondition(C1, C2); RESULT.setLine(C1left); :}
-                       |  (TermCondition) CondTerm:C1 {: RESULT=new TermCondition(C1); RESULT.setLine(C1left); :};
-
-CondTerm              ::= (AndCondTerm) CondTerm:C1 AND CondFactor:C2 {: RESULT=new AndCondTerm(C1, C2); RESULT.setLine(C1left); :}
-                       |  (FactorCondTerm) CondFactor:C1 {: RESULT=new FactorCondTerm(C1); RESULT.setLine(C1left); :};
-
 CondFactor            ::= (ExprCondFactor) Expr:E1 {: RESULT=new ExprCondFactor(E1); RESULT.setLine(E1left); :}
                        |  (RelOpCondFactor) Expr:E1 Relop:R2 Expr:E3 {: RESULT=new RelOpCondFactor(E1, R2, E3); RESULT.setLine(E1left); :};
-
-Relop                 ::= (EqRelop) EQ {: RESULT=new EqRelop(); :}
-                       |  (NeqRelop) NEQ {: RESULT=new NeqRelop(); :}
-                       |  (GtRelop) GT {: RESULT=new GtRelop(); :}
-                       |  (GeqRelop) GEQ {: RESULT=new GeqRelop(); :}
-                       |  (LtRelop) LT {: RESULT=new LtRelop(); :}
-                       |  (LeqRelop) LEQ {: RESULT=new LeqRelop(); :};
 
 ConditionEnd          ::= (ConditionEnd) {: RESULT=new ConditionEnd(); :} /* epsilon */;
 
@@ -486,5 +444,7 @@ Else                  ::= (Else) ELSE {: RESULT=new Else(); :};
 DoWhileStatementStart ::= (DoWhileStatementStart) DO {: RESULT=new DoWhileStatementStart(); :};
 
 MethodEnd             ::= (MethodEnd) RBRACE:R1 {: RESULT=new MethodEnd(R1); RESULT.setLine(R1left); :};
+
+Constructor           ::= (Constructor) THIS FormPars:F1 LBRACE StatementList:S2 RBRACE:R3 {: RESULT=new Constructor(F1, S2, R3); RESULT.setLine(F1left); :};
 
 ProgramEnd            ::= (ProgramEnd) RBRACE:dummy {: RESULT=new ProgramEnd(dummy); RESULT.setLine(dummyleft); :};
